@@ -1,0 +1,36 @@
+스프링 부트 사이트
+https://start.spring.io/
+
+메이븐/그레이들
+
+요즘은 Gradle 을 사용한다
+예전에나 maven
+
+Group : 패키징 도메인 명
+Artifact : 빌드될떄 나오는 프로젝트 명이라 생각
+
+추가 라이브러리
+springWeb, thymeleaf(html 엔진 )
+
+
+프로젝트 구조
+
+main, test 두개의 폴더가 있음
+test는 테스트 코드들
+
+resouces 설정, xml 파일들
+
+build.gradle : 스프링 버전들 자동으로 잡아줌
+
+gitignore도 잡아주네...
+
+폴더 구조 모양을 바꿀때 설정버튼클릭 -> tree appearance -> compactMiddlePakage 
+
+
+이텔리제이 쓸때 빌드가 자바를 직접 실행하지 않고 gradle 통해 실행하는 경우가 생김
+preference -> gradle 검색 -> build and run, test 둘다IntelliJ 로 변경
+
+또는  우측 설정 버튼 클릭 -> 셋팅 -> gradle 검색 -> build and run, test 둘다IntelliJ 로 변경
+
+서버 포트 변경 : 
+상단 run 메뉴 ->  editConfigurations -> Environment variables : 에서 server.port=8088로 변경

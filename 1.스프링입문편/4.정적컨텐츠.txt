@@ -1,0 +1,57 @@
+정적
+1. 웹을 브라우저에 그냥 내려 받는 기술
+-- 파일을 그대로 내려받아 사용하는 기술
+static content
+
+톰캣에서 스프링 보낸후 스프링에선 먼저 컨트롤러 있는지 판단해봄
+그후 없다면 resouces를 찾는다
+
+
+동적
+2. mvc 템플릿 엔진 방식 :
+서버에서 바꿔서 html로 내려주는 방식
+
+파라미터 단축키 컨트롤 + p
+
+
+mvc : model, view, controller
+이전에는 view 다 했다 model1 방식
+
+
+
+3. api :
+-- json 데이터 구조 포맷으로 클라이언트에 보내주는 방식
+--서버끼리 내려받을때
+@RequestBody  -> http body 부에 직접 데이터 넣겠다
+소스보기하면 html 태그값 안나오고 바로 문자열 나옴
+
+
+getter setter 자동완성 
+
+alt + insert
+
+컨트롤 + 시프트 + 엔터
+
+
+ @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name){
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+
+    static  class Hello {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+이렇게 만들면 
+json 방식으로 key, value 가 만들어진다

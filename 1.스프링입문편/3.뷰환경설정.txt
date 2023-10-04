@@ -1,0 +1,17 @@
+스프링에 많은 기능 사용하는법
+
+spring.io 들어가기 -> project -> spring boot -> learn ->
+현재 버전의 reference DOc 가기 
+
+
+spring-boot-devtools 추가후 
+
+빌드 ㅡㅡ
+
+--빌드 window 기준 하는 방법
+https://ottl-seo.tistory.com/21 
+
+--작업전 포트 변경은 application.properties
+
+** 잘안된다면 ./gradlew clean 
+을 하면 빌드 재생성되서 편함

@@ -1,0 +1,28 @@
+스프링JPA를 사용함으로써 개발자는 핵심 비지니스 로직에만
+집중할수있게 된다.
+
+간단하다
+SpringDateJpaMemberRepository 인터페이스를 만들고
+상속을 두개 한다음 메소드를 오버라이드하고
+
+config에서 MemberRepository 주입받으면
+
+먼저 SpringDateJpaMemberRepository 의 extends로  스프링에서 제공하는 JpaRepository
+상속받으면 스프링 jpa가 인터페이스에 대한 구현체를 스프링 자체 기술로 만들어낸다
+그리고 스프링 bean에 등록해논다. 
+그리고 개발자는 인젝션해서 
+this.memberRepository = memberRepository; 이렇게 받아 사용가능하다. 
+
+여기서 부터
+   public MemberRepository memberRepository(){ 메소드를 주석처리한다.
+
+대박인게 spring jpa에서 crud 우리가 사용할 기본 메소드들이
+상속받은 JpaRepository 여기에 구현되어있다.
+
+하지만 이름으로 찾는 메소드들은 공토응로 못하는 부분은
+findByName 을 사용한다 오버라이드 이렇게 짜면 jpa에서
+select m from Member m where m.name = ? 이렇게 짜준다
+이것 말고도 findByName 외 findByNameAnd, findByNameOr을 사용하여 내가 원하는 sql문을 사용할 수 있다.
+보통 단순 80 복잡 20의 쿼리들인데 이 단순 80을 springJpa를 사용하여 해결할수 있다.
+
+

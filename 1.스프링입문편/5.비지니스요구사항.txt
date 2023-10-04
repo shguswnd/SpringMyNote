@@ -1,0 +1,104 @@
+컨트롤러 : 웹 MVC 컨트롤 역할
+서비스 :  서비스의 핵심 로직 ex) 회원은 중복 타입이 안된다거나 의 로직
+-- 서비스는 핵심 비지니스 로직이 동작하도록 구현한 객체
+레파지토리 : 데이터베이스에 접근, 도메인 객체를 DB에 저장하고 관리 
+도메인 : 회워, 주문, 쿠폰 처럼 데이터베이스에 주로 저장하고관리하는 비지니스 로직
+객체
+
+
+인터페이스 : 메모리 구현체로 단순하게 저장할 구현체를 만듬
+향후 어떠한 DB를 붙일지 생각하며 또한 메모리가 선정되고 나면 
+바꿔 끼워야되는데 그것때문에 인터페이스를 만듬
+
+optional : 자바8에 있는 기능으로 .... 파라미터가 null을 받을때 리턴값이 다른듯??
+null여서 null 에러가 발생안한다는데?
+
+람다식 : 매개변수목록 -> 함수몸체
+클래스를 작성하고 객체를 생성하지 않아도 메소드 사용가능.
+
+1.매개변수의 타입을 추론할 수 있는 경우에는 타입을 생략할 수 있음.
+2. 매개변수가 하나인 경우에는 괄호(()) 를 생략 가능
+3. 함수의 몸체가 하나의 명령문만으로 이루어진 경우에는 중괄호({})를 생략 가능.
+4. 함수의 몸체가 하나의 return 문으로만 이루어진 경우에는 중괄호({})를 생략할 수 없음.
+5. return 문 대신 표현식을 사용할 수 있으며, 이때 반환값은 표현식의 결과값이 된다.
+
+
+
+return store.values().stream()
+                        .filter(member -> member.getName().equals(name))
+                        .findAny();
+
+위를 루프로 돌리는데.... 멤버에서 파라미터로 넘어온 네임이 같은지 판단...
+그중 .findAny 찾으면 반환된다 
+
+
+
+
+테스트케이스 작성
+
+개발한 기능을 실행해서 테스트 할때 자바의 main 메서드를 통해서 실행하거나,
+웹 어플리케이션의 컨트롤러를 통해서 해당 기능을 실행한다.
+이러한 방법은 준비하고 실행하는데 오래 걸리고, 반복 실행하기 어렵고 여러 테스트를 한번에 실행하기 어렵다는 단점이 있다.
+자바는 JUnit이라는 프레임워크로 테스트를 실행하서 이러한 문제를 해결한다.
+
+
+테스트 폴더에 동일한 패키지를 만들고 메소드명도 동일하게 한후 Test만 붙힌다.
+만든 인터페이스를 new 해주고 테스트 어노테이션을 JUnit으로 만든다.
+test어노테이션 걸린 메소드 실행 후 -> 안에 코드 만들기.
+
+      //optional에서 값을 꺼낼때는 get()으로 꺼낼수있다.
+
+
+검증...
+
+new에서 한거랑 DB에서 꺼낸거랑 같은지? 검증하자
+
+sout 이 systemout이네?
+단순히 system.out 으로 출력해도되나.
+System.out.println("result = " + (result == member));
+
+값을 맨날 보는건 불가능하니
+쥬피터가 제공하는
+Assertions.assertEquals를 사용해보자
+
+
+Assertions.assertEquals(result, member);
+비교할때
+expected, actual 순서이다보니
+기대값, 결과값을 써야한다.
+  Assertions.assertEquals(member, result);
+
+
+에러값
+     Assertions.assertEquals(member, null);
+-------------------------------------------------------------------
+org.opentest4j.AssertionFailedError: 
+Expected :hello.hellospring.domain.Member@3b2cf7ab
+Actual   :null
+-------------------------------------------------------------------
+
+
+요즘은
+Assertions 쥬피터께 아닌 assertJ를 사용하여 assertThat을 사용할것이다.
+    Assertions.assertThat(member).isEqualTo(result);
+
+alt+Enter로 static으로 바꾸어 앞에를 없애 최종적으로 
+assertThat(member).isEqualTo(result); 사용
+
+import static org.assertj.core.api.Assertions.*; 생성되어 아래부터는
+assertThat이 바로 사용됨
+
+!!! 테스트 케이스를 만들면
+메소드를 순서대로 절차대로 실행하는걸 보장하지 않는다.
+또한 객체를 만든다면 해당의 클래스안에 값을 보관하고 있기 때문에 
+데이터를 클리어 안할시 에러가 난다.
+반드시 객체 클리어를 해야함.
+
+@AfterEach
+메소드가 끝날때 마다 어떠한 동작을 하는 콜백 메서드. 
+
+
+
+alt+엔터 누르면 인터페이스 메서드들 자동으로 생성해줌.
+시프트 + 엔터
+시프트 + F6을 누르면 다같이 이름 변경 가능

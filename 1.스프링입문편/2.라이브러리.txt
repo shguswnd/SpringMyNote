@@ -1,0 +1,25 @@
+라이브러리 살펴보기
+
+build.gradle에서 dependencies의 내가 다운로드 받은 라이브버리 존재
+
+extenal Libraries 를 보면 외부 라이브러리들 존재, 톰캣, junit 등등의 많은 라이브러리들
+
+
+요즘 maven, gradle은 의존관계가 되는  필수 라이브러리들을 전부 자동으로 자동으로 땡겨줌
+
+
+* sysout.print 보다 로그를 만들어서 쓰자 제발!
+
+오류를 잡기위해 가장 중요하다(logging!!)
+
+test에서 가장 중요한건 junit 이다
+
+현시점 로깅의 표준
+logback, slf4j 이다
+
+테스트 라이브러리
+junit : 테스트 프레임워크 (junit5가 추세)
+mockito :목 라이브러리
+assertj : 테스트 코드를 좀 더 편하게 작성하게 도와주는 라이브러리
+spring-test : 스프링 통합 테스트 지원
+

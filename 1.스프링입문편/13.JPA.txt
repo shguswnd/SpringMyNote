@@ -1,0 +1,81 @@
+구글 트랜드
+https://trends.google.com/
+
+jpa 국내 책이 없었음.
+김영한이 출판후 15년도 부터 jpa의 한국 역사가 실어진다.
+
+
+application.properties
+spring.jpa.show-sql=true : jpa에서 날리는 sql를 볼수있다.
+
+jpa는 객체를보고 테이블도 스스로 다 만들어줌 
+일단 강의에서는 만들어진걸 쓰기때문에 
+
+speing.jpa.hibernate.ddl-auto=none  : none으로 설정을 끌것이다.
+테이블 만들고 싶으면 none 을 create로 써주면된다.
+
+jpa 라이브러리가 정상적으로 다운로드 되었다면 
+external Libraries에 hibernate가 들어와야한다.
+
+
+jpa는 객체랑 orm의 기술이다.
+
+
+사용법
+dto에 
+@Entity 를 만들고 jpa에서 관리(사용)한다라는걸 표시한다.
+그리고 pk를 만들어줘야함,         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+member 테이블에서 id를pk 및 자동 생성인 indentity(오라클에선 sequence) 설정을 해주었다.
+ 
+이제 
+    @Column(name = "name")
+각 컬럼에 위의 식으로 DB랑 매핑 시켜주면된다.
+
+
+JpaMemberRepository jpa 적용
+
+jpa는 EntityManager 로 모든게 동작된다.
+
+save 
+        em.persist(member); //persist는 영속적으로 만들겠다
+        return member; //리턴값이 없어 일단 맞춤
+
+findById
+pk 조회는 간단히 끝나지만
+        Member member = em.find(Member.class, id);
+        return Optional.ofNullable(member);
+
+findByName 은 다르다!!
+
+findAll
+        List<Member> result = em.createQuery("select m from Member m", Member.class)
+                .getResultList();
+        return result;
+위의 내용을 작성하고 하나로 합칠수 있는데
+ctrl + alt + n 을 눌러 합친다.
+
+select m from Member m 이걸 오면 m 객체 자체를 select 해준다
+
+
+findByName
+        List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
+                .setParameter("name", name)
+                .getResultList();
+        return result.stream().findAny();
+
+
+
+jpa를 쓸때 가장 중요한건 @Transactional을 써줘야한다.
+jpa는 모든 데이터 변경이 Transactional 안에서 실행되어야한다.
+
+
+test 케이스에서 이전에
+Transactional 걸면 commit을 방지한다고 했는데
+Transactional 건 상태에서 내가 commit하고싶은 메서드에 
+@Commit을 걸어주면 db에ㅓ 커밋된다.
+
+
+ctrl + t 로 inline을 검색해보면
+inline : ctrl + alt + n 이 나오며 눌러 합친다.
+전체화면
+ctrl + shift + F12

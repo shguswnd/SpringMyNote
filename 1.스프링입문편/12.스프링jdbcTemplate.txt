@@ -1,0 +1,28 @@
+jdbcTemplate는 마이바티스와 비슷한 구조의 라이브러리
+
+중복코드들을 제거제거해줌
+
+실무에서 자주 쓰임
+
+
+
+
+
+    private RowMapper<Member> memberRowMapper(){
+        return new RowMapper<Member>() {
+            @Override
+            public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Member member = new Member();
+                member.setId(rs.getLong("id"));
+                member.setName(rs.getString("name"));
+                return member;
+            }
+        }
+    }
+
+여기서 alt + enter를 통해 람다로 바꿀수 있다.
+
+
+테스트 케이스 검증이 좋은점 하나더
+테스트케이스에서 오류 수정 후 
+시프트 + F10을 눌러 이전 실행을 누르니 테스트케이스를 다시 실행해서 검증해준다.
