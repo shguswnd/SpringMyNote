@@ -1,0 +1,50 @@
+회원 도메인 요구사항
+-회원을 가입하고 조회할 수 있다.
+-회원은 일반과 VIP 두 가지 등급이 있다.
+-회원데이터는 자체 DB를 구축할 수 있고, 외부 시스템과 연동할 수 있다.
+
+core 폴더 밑에 member 폴더를 만드는데 enum? 으로 데이터를 만든다 머지?
+
+
+실무에서는 ConcurrentHashMap 을 쓴다(동시성 이슈때문에)
+
+
+MemberServiceImpl
+
+여기서 Impl은 관례같은건데 구현체 하나만 있을경우
+impl이라 많이쓴다.
+
+
+
+테스트 코드
+
+hello.core에 MemberApp를 만든다.
+
+
+이제 test 폴더에 
+member 패키지를 만들고
+memberServiceTest를 만든다.
+
+
+여기서 문제점
+
+MemberServiceImpl 얘의 문제는
+
+MemberRepository 얘는 분명 인터페이스를 의존한다.
+
+MemoryMemberRepository(); 얘 실제 할당하는 부분은 구현체를 의존한다.
+
+추상화에도 의존하고 구체화에도 의존한다는 말이다.
+
+DIP 위반이다.
+
+psvm 으로 기본 메인 만듬
+컨 + 시프티 엔터 ; 만들기
+
+알트 + 엔터 : 생성자 게터셋터 오버라이드 다됨
+
+
+컨+알+v : 자동생성
+
+
+soutv하면 변수 선택 가능
