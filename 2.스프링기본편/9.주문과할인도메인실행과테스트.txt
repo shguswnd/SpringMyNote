@@ -1,0 +1,20 @@
+OrderApp 클래스 만들고 psvm 치기
+
+내부 작성하고 soutv를 사용하려  order를 출력을 해보면 tostring이 바로 출력이 되며
+
+컨 + D 르르 누르면 다음행에 현재행 복사된다.
+
+
+이제 테스트폴더에 order 테스트를 만들어 볼것이다.
+
+OrderServiceTest 만든다.
+
+Long을 쓸때 long을 써도된다 하지만 long 을 쓰면 null이 안들어가진다.
+
+테스트 코드 작성 후
+
+CoreApplicationTests 파일을 보면 얘는 자동으로 생성된 파일이다.
+
+얘로 테스트할때
+SpringBootTest 사용하는데 이걸로 테스트하면 스프링 부트 띄우고 테스트를 하여
+엄청 오래걸림

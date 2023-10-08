@@ -1,0 +1,78 @@
+앞의 내용들을 해결하기 위해
+
+AppConfig를 만들어 해결을 해보자.
+
+AppConfig(나의 애플리케이션 전체를 설정하고 구성한다)
+
+
+MemberServiceImpl 에서 new 를 해주어 
+ MemberRepository memberRepository = new MemoryMemberRepository(); 를 직접 여기서 관리를 했다.
+
+이러한 작업들을 전부 Config에서 다 해준다. 
+
+MemberServiceImpl 클래스에서 이전에 
+    private final MemberRepository memberRepository = new MemoryMemberRepository();
+
+new 하여 메모리를 생성하는게 아닌  생성자를 만들고 
+
+    private final MemberRepository memberRepository;
+
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+Config에서 return new MemberServiceImpl(new MemoryMemberRepository()); 
+어떠한 생성자를 만들어줄지 정해준다.
+
+이게 바로 생성자 주입!
+
+
+오더의 경우 사용하는 필드가 두개이다. 
+
+    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private DiscountPolicy discountPolicy;
+
+
+아래와같이 만들어준다. 여기서 final은 값이 있어야되므로 기본으로 할당하든 생성자를 통해 할당하든 해줘야한다.
+
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+
+
+
+
+
+이제 마지막으로 MemberApp에서 config를 만드러주면 된다.
+
+
+기존 
+MemberService memberService = new MemberServiceImpl(); 방식에서
+config 방식으로 바꾸어 버렸다
+
+여기서 실행하면 에러가 나므로 OrderApp에서도 
+
+config로 바꾸어준다.
+
+test도 config 방식으로 바꾸어 줘야한다.
+
+ @BeforeEach 사용해서 먼저 실행하기 전에 appconfig를 만들고
+memberService 에 할당을 해준다.
+
+MemberService memberService;
+   
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
+
+
+
+tip
+
+컨 + E : 과거 히스토리가 다 나온다.
