@@ -1,0 +1,17 @@
+config 파일을 이제 역할을 드러나게 바꿀것이다.
+
+
+
+new 하는 생성하는곳에 
+***
+컨 + 알 + M
+***
+이걸 눌러주고 옵션 버튼을 눌러 리턴 이름을 memberRepository
+return type을 인터페이스인 MemberRepository 로 해준다.
+
+
+이렇게 extract 해주므로써 바꿔주어
+
+config에 역할들이 메소드로 다 들어난다.
+
+나중에 DB로 바뀐다면 new 해주는 부분만 바꿔주면 된다는것!.

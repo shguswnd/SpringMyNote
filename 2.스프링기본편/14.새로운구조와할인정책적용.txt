@@ -1,0 +1,16 @@
+이제 드디어 정액할인을 점율 할인으로 변경하자!
+FixDiscountPolicy -> RateDiscountPolicy 로 바꿀것이다.
+
+AppConfig의 출현으로 사용 영역과 구성영역이 나뉘어 졌다!.
+
+//        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
+
+FixDiscountPolicy 를 주석처리하였다.
+
+
+
+컨 + 시프트로 이전 실행을 한번 해보자
+
+
+이제는 사용영역을 변경할 필요가 없다.!!!
