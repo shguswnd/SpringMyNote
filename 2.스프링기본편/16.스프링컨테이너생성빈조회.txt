@@ -1,0 +1,63 @@
+ApplicationContext 를 스프링 컨테이너라 한다.
+ApplicationContext 는 인터페이스이다 (다형성)
+
+
+ApplicationContextInfoTest test 를 만들어본다.
+
+Junit에서는 이제 public 을 사용안한다.
+
+앞에 클래스의 public 도 생략한다.
+
+***
+iter 탭하면 for문이 자동으로 완성된다.
+
+
+ac.getBean할때 타입을 모르기 때문에 object로 잡힌다.
+
+
+컨 + D 로 선택된 코드 복붙한다.
+
+
+getBeanDefinition 빈에 대한 정보들
+
+ROLE_APPLICATION : 스프링 내부에서 등록한 bean이 아니라 내가 애플리케이션 개발하기 위해 등록한 빈이다. 또는 외부 라이브러리
+
+
+ApplicationContextBasicFindTest 클래스 파일 만들기
+
+
+
+***이전 코드 컨+E + 엔터 누르자!!!!***
+
+
+***알프 + 엔터 ** 로 assertj 를 static으로 나두자.
+
+
+
+    @DisplayName("구체 타입으로만 조회")
+    void findBeanByType2(){
+        MemberServiceImpl memberService = ac.getBean(MemberServiceImpl.class);
+        assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
+    }
+
+여기서  (MemberServiceImpl.class); 이것도 성공을 하는데 반환 타입이 MemberService여도 상관이 없는데
+인스턴스 타입 즉 new 했던  MemberServiceImpl 를 사용하기 때문에 괜찮다.
+
+
+
+테스트는 실패 테스트를 꼭 만들자
+
+        MemberService xxxx = ac.getBean("xxxx", MemberService.class); 
+
+이렇게하면 터지는데 xxxx 란 빈을 만든적이 없기때문
+
+여기서 
+Assertions 의 junit 을 써야 assertThrows를 사용할 수 있다.
+
+
+
+ApplicationContextSameBeanFindTest 만들어주며
+
+DiscountPolicy 중복 테스트를 이전과 동일하게 진행하면 AppConfig를 손을 봐야되기 때문에
+
+new AnnotationConfigApplicationContext() 값을 빈값으로 채우고 static 클래스를 만들고 현재 클래스에서만 새로운 클래스를 쓰겠다고 만든다.

@@ -1,0 +1,44 @@
+제어의 역전
+
+보통 개발자가 객체 생성 호출하고 개발자가 직접 컨트롤하고 그랬지만
+이걸 개발자 호출이 아닌 프레임 워크에서 대신 호출해주는 개념
+(제어가 뒤바뀐다!)
+
+지금까지 자바 코드로 DI를 적용했다면 이제 스프링을 써서 제대로 해보자!
+
+
+AppConfig에 @Configuration 어노테이션을 걸고 import 내용을 아래와 같이하자
+import org.springframework.context.annotation.Configuration;
+
+
+모든 메소드에 @Bean을 해주자
+
+이렇게 하면 얘들이 스프링 컨테이너에 다 등록이 된다.
+
+
+MemberApp로 들어가
+//        AppConfig appConfig = new AppConfig();
+//        MemberService memberService = appConfig.memberService();
+해당의 내용을 주석처리한다.
+
+
+스프링은 ApplicationContext 로 시작을 하며(스프링컨테이너라 생각하자)
+ApplicationContext 이게 @Bean 머든 모든걸 다 관리해준다.
+
+
+new AnnotationConfigApplicationContext(AppConfig.class);
+new로 생성해주고 파라미터는 AppConfig로 지정해준다.
+이렇게하면  스프링이 파라미터 안에있는 모든 @Bean들을 @들을 전부 스프링 컨테이너에다가
+다 객체 생성하고 관리해준다.
+
+
+OrderApp도 동일하게 만들어주자 
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
+        OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
+
+
+이렇게
+getBean("memberService", )
+getBean의 네임을 바꾸려면 @Bean("네임")을 바꿔줘야되지만
+보통은 디폴트로 나두는게 낫다.
