@@ -1,0 +1,31 @@
+클래스 인스턴스가 딱 하나만 생성되는걸 보장한다.!!
+
+절대 두개가 생성되지 않는다.
+
+SingletonService 패키지에서 
+SingletonService 클래스를 만든다.
+
+싱글톤을 private static 만들어도 누군가가 생성자로 SingletonService 
+해버리는 끝이지 않나?
+
+그걸 위해 
+SingletonService() 생성자 자체를 private로 만든다.
+
+싱글톤을 만든 이후에 test 진행을 위해 
+SingletonTest를 들어가 singletonServiceTest 메소드를 만들고 
+
+
+컨 + d 로 두개를 만들자.
+
+
+isSameAs  란?
+
+isEqualTo 의 차이
+
+//same은 자바의 == 과 같은
+//isEqualTo은 자바의 Equals 와 같음
+
+스프링 컨테이너를 쓰면 Appconfig에서 
+getInstance 로 바꾸는게 아니라
+컨테이너에서 알아서 싱글톤으로 바꿔둔다. 
+
