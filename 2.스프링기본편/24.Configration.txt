@@ -1,0 +1,46 @@
+@Configuration 은 싱글톤을 위해 있다??
+
+    //@Bean memberService -> 결과론적으로 new MemberServiceImpl(memberRepository()); 만든다.
+    //@Bean orderService -> new MemberServiceImpl(memberRepository()); 만든다.
+
+스프링 컨테이너가 불러와지면서 @Bean 보고 결국 객체를 생성한다.
+
+그렇다면 위에 두 메소드를 확인할때 똑같은게 두번 호출된다는 것이다.
+
+이러면 싱글톤이 깨지나???
+
+테스트 코드 실험하자...
+
+
+스프링 컨테이너는 어떻게 관리하나?
+
+MemberServiceImpl 로 가자
+
+memberRepository 와 orderRepository를 꺼내보자.
+
+ConfiguraitonSingletonTest 클래스를 만들자.
+
+        System.out.println("memberService -> memberRepository1 = " + memberRepository1);
+        System.out.println("memberService -> memberRepository2 = " + memberRepository2);
+        System.out.println("memberRepository = " + memberRepository);
+주소값이 같은데???
+
+
+이제 실험하자
+
+그냥 AppConfig 메소드로 가자
+
+
+soutm 쓰자
+
+컨테이너에서 메소드 접근시 순서는 다를수 있지만
+    //call AppConfig.memberService
+    //call AppConfig.memberRepository
+    //call AppConfig.memberRepository
+    //call AppConfig.orderService
+    //call AppConfig.memberRepository
+보면 레포지토리를 3번 호출한다.
+
+하지만 test코드에서 실행해보면 
+각자 다른 메소드들을 한번씩 호출한다.
+이게 바로 스프링에서 지원하는것~~

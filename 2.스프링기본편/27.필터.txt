@@ -1,0 +1,5 @@
+test -> scan 밑에 filter를 만들자
+그리고 
+MyIncludeComponent 를 어노테이션으로 만들자
+
+MyIncludeComponent를 컴포넌트 스캔에 추가하겠다.
