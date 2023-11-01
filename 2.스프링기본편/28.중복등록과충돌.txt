@@ -1,0 +1,43 @@
+빈 등록 명칭이 같을 경우,
+
+자동빈 vs 자동빈
+
+OrderServiceImpl, MemberServiceImpl
+에 service를 동일하게 만든다.
+
+그리고 AutoAppConfig 를 돌리기 위해 
+
+AutoAppConfigTest 를 돌리자
+
+
+ConflictingBeanDefinitionException 에러 발생
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [hello.core.AutoAppConfig]
+
+
+수동빈 vs 자동 빈
+
+AutoAppConfig 에
+
+    @Bean(name ="memoryMemberRepository")
+    MemberRepository memberRepository(){
+        return new MemoryMemberRepository();
+    }
+
+를 만들어보자 그러면 일단 컴포넌트에서 MemoryMemberRepository 이게
+-> 소문자인 memoryMemberRepository 이걸로 만들어진다.
+그걸 똑같이 수동으로 만들기 위해 
+@Bean(name ="memoryMemberRepository") 이렇게 지정
+
+그리고 테스트코드에서  basicScan 여기서 실행할떄 에러는 안뜸
+근데 오버라이트 로그가 찍힘.
+
+이 경우 수동 빈 등록이 우선권을 가짐.
+수동빈이 자동빈을 오버라이딩 한다.
+
+최근 스프링 부트에서 오버라이팅 위와 같은 상황의 문제로 운영에서 
+고치기 힘든 문제가 나와
+CoreApplication을 돌렸을때는 오류가 나도록 설정되어있음
+하지만 오버라이딩 하고싶르면
+application.properties에 
+spring.main.allow-bean-definition-overriding=true
+넣어논다.
