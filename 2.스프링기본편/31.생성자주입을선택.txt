@@ -1,0 +1,52 @@
+OrderServiceImpl 에서 셋터 만들자
+
+
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
+
+    @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+    }
+
+    @Autowired
+    public void setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+
+
+컨트롤 + 시프트 + T 를 눌러 오덜서비스인포의 테스트 파일을 만든다.
+순수 자바테스트를 위해
+OrderServiceTest 를 가 
+createOrder 이후를 작성한다.
+
+
+내가 만약 테스트코드를 짜는데
+
+        OrderServiceImpl orderService = new OrderServiceImpl();
+        orderService.createOrder(1L, "itemA", 10000);
+
+이거만 봤을떄 의존 관계든 머든 알려면 소스를 까봐야한다. 그런데
+
+생성자 주입을 한다면??
+
+이제 셋터를 지우고 생성자 주입을 다시 살린다.
+
+이렇게 한 후 테스트코드를
+    @Test
+    void creator(){
+        MemoryMemberRepository memoryMemberRepository = new MemoryMemberRepository();
+        memoryMemberRepository.save(new Member(1L,"name", Grade.VIP));
+
+        OrderServiceImpl orderService = new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+        Order order = orderService.createOrder(1L, "itemA", 10000);
+
+        assertThat(order.getDiscountPrice()).isEqualTo(1000);
+    }
+
+짠다면 여러 구현체들을 사용해서 순수 자바코드로 테스트 코드를 짤수있다.
+생성자 주입을 사용하먄 final 사용할수 있는데
+
+장점으로 개발자가 실수로 생성자 만들고 안에 this 생성자 내용들을 뺄수있다.
+근데 final을 넣어버리고 생성자에서 내용을 빼거나 실수하면 컴파일 오류나서 바로 확인이 가능하다.

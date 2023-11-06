@@ -1,0 +1,30 @@
+build.gradle 롬복 추가.
+
+코끼리 클릭 또는 오른쪽 위 grable 새로코침 누르기!
+
+
+file -> settings -> plugin 에서 롬복 다운로드
+
+file -> settings -> annotation processors -> Complier의
+Enable annotation processing 체크 표기 이렇게해야 롬복 사용가능
+
+코어 패키지 밑에 바로 HelloLombok 클래스를 만들자
+
+
+오더서비스이포를 가서
+@RequiredArgsConstructor 를 만들면 
+
+ public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+이 코드를 그대로 만들어준다.(final 기준으로) 
+
+즉 현재 매개체에 final이 붙은 파라미터 받는 생성자를 만들어 준다.
+
+컨트롤 +F12를 누르면 
+만드러진 내용을 볼 수 있다.
+
+이렇게 롬복을 이용한 생성자 주입을 해버린다.
+
