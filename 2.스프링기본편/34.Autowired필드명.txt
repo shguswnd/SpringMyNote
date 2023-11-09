@@ -1,0 +1,44 @@
+조회대상 빈이 2개 이상일때
+
+@Autowired 필드 명 매칭
+@Autowired는 타입 매칭을 시도학, 이때 여러 빈이 있으면 필드 이름, 파라미터 이름으로 빈 이름을 추가
+매핑한다.
+DiscountPolicy 빈이 픽스도 있고 레이트도 있다
+이럴경우 스프링은 필드 명이나 파라미터 명을 본다 그리고 빈이름이 똑같은게 있으면 그걸 찾는다.
+즉 필드명이나 파라미터 명칭이 매칭된 애를 사용한다.
+
+
+OrderServiceImpl에서
+@RequiredArgsConstructor 지우고 
+discountPolicy를 rateDiscountPolicy 로 바꾸자.
+
+basicScan를 돌려보면 성공한다
+
+
+    @Autowired
+    private DiscountPolicy rateDiscountPolicy; 
+
+필드 주입도 가능하다
+
+-----------------------------------------------------------
+@Qualifier @Qualifier끼리 매칭 빈 이름 매칭
+RateDiscountPolicy 를@Qualifier("fixD") 
+FixDiscountPolicy 를 @Qualifier("fixDiscountPolicy") 로 적용한다.
+OrderServiceImpl 의 생성자에서 discountPolicy 로 원복후 
+생성자 DiscountPolicy 파라미터 안에 @Qualifier("fixD") 나  @Qualifier("fixDiscountPolicy") 넣을수 있다.
+
+
+
+-----------------------------------------------------------
+@Primary 사용
+우선순위를 지정하며, @Autowired에서 여러 빈이 매칭될떄 @Primary 가 지정되어있으면 우선권을 가진다.
+
+파라미터 커서두고
+컨트롤 알트 B
+로 이전 Qualifier 다 지우고 
+내가 rate 먼저 선택되게 할꺼야 하면 @Primary 넣어주면된다.
+
+이게 왜좋냐면 데이터베이서 커넥션관련이고 메인 데이터 베이스와 보조데이터 베이스가 있다 치자.
+메인 데이터 베이스는 90프로 보조데이터 베이스 어쩌다가 한두번 로직이 있다.
+그러면 메인 보조 둘다 @Qualifier 를 하면 너무 귀찮다
+그래서 메인 디비만 @Primary  를 붙여주면 서로 깔끔하게 룰도 정해진다.

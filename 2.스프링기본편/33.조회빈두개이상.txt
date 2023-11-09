@@ -1,0 +1,8 @@
+FixDiscountPolicy 도 Component 스캔 등록해보자
+
+이러면 둘다 등록.
+
+이러면 문제가 생기는데 
+
+AutoAppConfigTest 의 basicScan 에서 문제가 발생 
+DiscountPolicy이거에서 터짐
