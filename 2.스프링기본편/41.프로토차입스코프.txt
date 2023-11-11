@@ -1,0 +1,18 @@
+package hello.core.scope;
+
+
+SingletonTest 클래스를 만듬
+
+PrototypeTest 클래스도 만들자
+
+
+참고로
+
+   @Component
+    static class PrototypeBean{
+
+여기에는 컴포넌트가 없는데? 
+
+AnnotationConfigApplicationContext(PrototypeBean.class); 를 해주면
+
+대상이 컴포넌트스캔된다고 생각한다. 바로 스프링 빈으로 등록함

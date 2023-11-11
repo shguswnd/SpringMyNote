@@ -1,0 +1,24 @@
+NetworkClient 클래스에서 다시  implements InitializingBean, DisposableBean 의 대한 내용을 지워준다.
+
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        connect();
+        call("초기화 연결 메세지");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        disconnect();
+    } 
+
+대한 내용도 지우고 init, close로 변경해서 해보자
+
+NetworkClient 에서 컨트롤 + B를 눌러 
+빈을 만들어주자.
+
+
+destroyMethod 의 기본값이 특별하다 타고 가다보면 INFER_METHOD
+(inferred) 가 있는데 추측하다 의미이다.
+즉 close나 shutdown이 있으면 알아서 종료해주도록 한다.
+

@@ -1,0 +1,5 @@
+NetworkClient 클래스에서 init 에 PostConstruct 애노테이션
+close 에 PreDestroy 애노테이션을 넣어주면 끝이다
+
+        @Bean(initMethod = "init", destroyMethod = "close") 빈 줏ㄱ하고 
+그냥 빈 등록하자

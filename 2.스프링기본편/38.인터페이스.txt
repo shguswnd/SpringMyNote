@@ -1,0 +1,8 @@
+NetworkClient 클래스에서 implements 하자.
+
+afterPropertiesSet를 만드는데 뜻이 의존관계 주입이 끝나면 호출하겠다는 의미
+
+destroy 에가 들어오면 disconnect 해준다
+
+
+하지만 요즘에는 이제 사용이 안하게된다.

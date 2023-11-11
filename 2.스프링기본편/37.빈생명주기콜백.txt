@@ -1,0 +1,18 @@
+빈생명 주기 콜백 시작 
+
+데이터베이스 커넥션 : 어플리케이션과 데이터베이스를 서버 올라올때 미리 맺어논다.
+애플리케이션 종료될때도 안전하게 모두 종료해줘야함.
+
+이러한걸 스프링이 제공한다.
+
+
+테스트 코어에 lifecycle 패키지 만들고, NetworkClient 클래스를 만들자.
+
+lifecycle 패키지에 BeanLifeCycleTest 클래스 만듬
+
+특이점으로     ac.close(); 를 해줘야되는데 보통 닫는 메서드를 ApplicationContext 여기서 제공하지않음 그래서
+
+AnnotationConfigApplicationContext 얘로 바꾸거나 ConfigurableApplicationContext 로 바꿔준다.
+
+
+

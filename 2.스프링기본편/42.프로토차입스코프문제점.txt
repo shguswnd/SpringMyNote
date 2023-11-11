@@ -1,0 +1,1 @@
+package hello.core.scope; 패키지에 SingletonWithPrototypeTest1 클래스를 만들어본다.
