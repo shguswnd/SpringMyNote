@@ -1,0 +1,24 @@
+httpRequest에 따라 각 객체들이 만들어지고 이 리퀘스트스코드에 따라 서비스로 가
+
+각각 객체들의 데이터들을 서로 맞게 반환시켜 준다.
+
+
+프로토타입은 요청될때마다 새롭게 생성이 되었다면,
+
+얘는 리퀘스트 요청들어오고 나갈때 까지의 라이프 사이클동안에는 같은애가 관리된다.
+
+
+여러 사용자들이 동시에 접속하고 무언가를 할때 확인하기 힘들다
+
+다음과 같이 로그가 남도록 request 스코프를 활용
+
+
+
+package hello.core.common; 에 MyLogger 클래스를 만들자.
+
+
+
+uuid = UUID.randomUUID().toString(); 확률이 말도안되게 있음
+
+
+package hello.core.web; 에 LogDemoController 클래스 와 LogDemoService 서비스 만듬

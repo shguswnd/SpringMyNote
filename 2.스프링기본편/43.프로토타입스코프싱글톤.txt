@@ -1,0 +1,12 @@
+ObjectFactory : getObject 하나만 제공
+ ObjectProvider : 여러 편의 기능들이 있음
+
+
+
+스프링에 ObjectProvider 자동으로 등록해준다.
+
+
+JSR-330 Provider : 스프링에 의존하지 않음
+
+javax.inject:javax.inject:1 
+라이브러리 추가하면 컨트롤+n 시, javax의 provider이 나온다.
