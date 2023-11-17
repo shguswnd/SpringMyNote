@@ -1,0 +1,9 @@
+파일 -> 셋팅 -> 그래들 에서 IntelJ 실행.
+파일-> 셋팅 -> 플러그인 -> 롬복 인스톨
+
+파일-> 셋팅 -> Annotaion Pro.. -> enable annotaion processing 체크
+
+
+	//providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+빌드 그래들에서 주석처리

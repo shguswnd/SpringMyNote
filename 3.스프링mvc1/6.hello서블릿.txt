@@ -1,0 +1,25 @@
+ServletApplication 클래스에서 작업을 시작하자.
+@ServletComponentScan //서블릿 자동 등록 
+추가해준다.
+
+
+package hello.servlet.basic; 에 HelloServlet 클래스를 만들어주자.
+
+
+컨트롤 + O 
+
+클릭후 service를 입력하고 자물쇠있는걸 클릭해서 생성하자
+
+이렇게되면 서블릿을 호출하면 해당의 서비스가 실행된다
+
+soutm
+
+
+request.getParameter("username"); 입력 후 컨 + 알 + v
+
+
+application.properties 에 
+logging.level.org.apache.coyote.http11=debug 추가해주자
+
+
+webapp 폴더를 만들어서 진행을 함
