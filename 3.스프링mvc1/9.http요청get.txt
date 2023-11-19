@@ -1,0 +1,13 @@
+package hello.servlet.basic.request; 경로  RequestParamServlet 클래스만든다.
+
+하나의 파라미터에 중복된 다른 값들을 사용하려고 할떄 내부 우선순위에서 먼저 
+잡히는게 나오게되며
+
+이럴경우, getParameterValues 을 사용하면 된다.
+
+        System.out.println("[이름이 같은 복수 파라미터 조회]");
+        String[] usernames = request.getParameterValues("username");
+        for(String name : usernames){
+            System.out.println("usernames = " + name);
+        }
+

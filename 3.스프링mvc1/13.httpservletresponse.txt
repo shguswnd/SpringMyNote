@@ -1,0 +1,19 @@
+package hello.servlet.basic.response; 에 ResponseHeaderServlet 만든다.
+
+
+ response.setStatus(HttpServletResponse.SC_OK);
+
+sc_ok 를 들어가 보면 상수로 응답값이 있다.
+
+
+캐쉬를 완전히 무효화하겠다
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+과거버전까지 싹다 캐쉬 무시
+response.setHeader("Pragma", "no-cache");
+
+내가 원하는 임의이 헤더를 만들수있따.
+    response.setHeader("my-header","hello");
+
+
+
+SC_BAD_REQUEST 넣어서 해보면 400 이 개발자툴에뜬다.

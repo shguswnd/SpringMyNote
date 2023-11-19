@@ -1,0 +1,14 @@
+package hello.servlet.basic.request; 에  RequestBodyStringServlet 만들기
+
+
+        ServletInputStream inputStream = request.getInputStream();
+이렇게 스트림하면 메세지 바디 코드 내용을 바이트 코드로 받을수 있다.
+
+항상 바이트를 문자로 변환할때는 문자 인코딩 값을 알려줘야한다.
+반대로 문자를 바이트 코드로 바꿀때도 인코딩값을 알려줘야함
+
+
+포스트 맨으로
+
+url : http://localhost:8088/request-body-string
+body에 raw 와 text 입력
