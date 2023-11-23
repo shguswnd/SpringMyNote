@@ -1,0 +1,31 @@
+package hello.servlet.domain.member; 에 
+member 와 MemberRepository 를 만들어준다.
+
+
+싱글톤 적용을 위해 생성자를 
+private MemberRepository private 로 막음
+
+ArrayList<>(store.values()); 이렇게 만들어 스토어에있는 모든 값들을 꺼내
+리스트에 담아줌 왜 이렇게 하는건가면 new arrayList에서 값을 받거나 조작해도
+store의 밸류에 데이터를 건들고 싶지않을때 쓴다. 스토어 보호
+
+
+이제 클래스를 커서나두고 테스트 코드를 컨+시프트+T를 눌러서 만들어본다.
+
+
+    //given : 이렇게 주어졌을때
+
+
+        //when : 이런걸 실행했을떄 
+
+        //then : 이런이런 결과여야돼
+	
+
+
+** 테스트 코드는 순서 보장이 안되기 때문에 테스트 하나가 끝나면 데이터를 clear 해주도록 만들어야되고 
+그게 
+   @AfterEach
+    void afterEach(){
+        memberRepository.clearStore();
+    }
+이거 이다.

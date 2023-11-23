@@ -1,0 +1,10 @@
+package hello.servlet.basic.response; 경로에 ResponseJsonServlet 클래스를 만든다.
+
+
+ HelloData helloData = new HelloData();
+        helloData.setUsername("kim");
+        helloData.setAge(20);
+
+해당의 데이터를 json 형식으로 바꿀것이며 오브젝트매퍼를 사용해야된다.
+
+Jackson 라이브러리가 제공하는 objectMapper.writeValueAsString() 를 사용하면 객체를 json 문자로 변경할수있다.
