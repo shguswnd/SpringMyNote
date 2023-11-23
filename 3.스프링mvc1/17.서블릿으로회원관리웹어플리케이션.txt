@@ -1,0 +1,10 @@
+package hello.servlet.web.servlet; 에  MemberFormServlet,
+MemberSaveServlet ,
+MemberListServlet 만든다.
+
+
+webapp->jsp->members 패키지에 
+new-form.jsp, save.jsp 파일을 만들어준다.
+
+
+너무 기본이다......

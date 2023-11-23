@@ -1,0 +1,33 @@
+변경주기가 다를때 분리한다.!!
+
+변경의 라이프 사이클이 다르다.
+
+UI 변경과 비지니스 로직의 변경이 크면 같이 변경하지만
+짜잘한것든 버튼 옮기기, 버튼 기능 추가 등 은 따로따로 움직인다.
+
+
+컨트롤러는 전달하는 컨트롤만 
+비지니스 로직은 옛날 방식이지.
+
+
+
+package hello.servlet.web.servletmvc; 에 MvcMemberFormServlet, MvcMemberSaveServlet,MvcMemberListServlet 를 만들자
+
+
+RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath); 
+사용하여 전달 
+완전 오랜만!
+dispathch로 서버의 제어권을 넘겨준다.
+
+생각해보니 절대경로랑 상대경로의 속도 차이가 있을까??
+
+
+WEB-INF 안에는 항상 컨트롤러 거쳐서만 접근이 가능하다
+war의 기준
+url/WEB-INF/파일명 이런식으로 접근 불가 
+잊고있었네....
+
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+화면 출력
