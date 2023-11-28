@@ -1,0 +1,11 @@
+package hello.servlet.web.frontcontroller; 에  MyView 를 만든다.
+
+이제 v1 과 동일하게 v2 패지키들을 만들어줄것이다.
+
+
+컨트롤 + 알트 + 시프트 + t 를 눌러 inline을 해준다.
+또는 컨+알+N
+
+컨 + b 인터페이스 들어가고
+
+컨 + 알 + b 를 하면 실제 구현된 구현체를 들어갈수있다.

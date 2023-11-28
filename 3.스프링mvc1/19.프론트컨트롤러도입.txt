@@ -1,0 +1,15 @@
+package hello.servlet.web.frontcontroller.v1; 경로에 ControllerV1 인터페이스를 만든다.
+
+인터페이스를 통해 프론트컨트롤러를 통해 컨트롤할것이다.
+프론트컨트롤러를 위해 기반만 다져놈
+
+
+package hello.servlet.web.frontcontroller.v1.controller; 경로에 
+MemberFormControllerV1, MemberSaveControllerV1, MemberListControllerV1클래스를 만들고 ControllerV1 인터페이스를 받아
+알트 엔터를 눌러준다.
+
+
+
+프론트컨트롤러
+
+package hello.servlet.web.frontcontroller.v1; 경로에 FrontControllerServletV1 를 만든다.
