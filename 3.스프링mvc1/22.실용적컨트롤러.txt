@@ -1,0 +1,6 @@
+package hello.servlet.web.frontcontroller.v4; 에 인터페이스 ControllerV4 를 만든다.
+
+나머지는 v 시리즈와 동일하게 구성을 한다.
+
+
+F2를 눌러 에러난 부분을 바로 갈 수있다.

@@ -1,0 +1,44 @@
+핸들러 어댑터 패턴을 따라 우리가 개발한 프론트 컨트롤러의 방식들을 다양하게 사용할수있다.
+
+핸들러 어댑터는 boolean supports(Object handler); 인
+supports를 사용할수 있는데 이것은 핸들러의 매핑정보를 구분하여 어댑터에서
+내가 v1, v2 어떤걸 쓸지 처리할수 있는지 판단 후 처리 가능이면 true 불가능하면 false을 해준다.
+
+
+이제 v5를 만들어보자 먼저 핸들러 어댑터를 만들어 주며
+
+
+package hello.servlet.web.frontcontroller.v5.adapter; 에 ControllerV3HandlerAdapter 를 만들어 핸들러어댑터를 연결해준다.
+
+그리고 supports 에서 컨트롤러를 판별하기 위해 return (handler instanceof ControllerV3); 이렇게한다
+이제 컨트롤 v3를 만나게 되면 true가 반환되게 만들어준다.
+
+handle 은 실제로 처리하는 행위를 지정해준다.
+
+여기서 Object 를 파라미터로 쓰는 이유는 굉장히 유연하게 하기 위함
+
+컨트롤 v3는 controller.process 하기위해 먼저 파라미터 맵이 필요!
+
+
+그러프로 v3 프론트컨트롤러 에서
+
+    private static Map<String, String> createParamMap(HttpServletRequest request) {
+        Map<String, String> paramMap = new HashMap<>();
+        request.getParameterNames().asIterator()
+                .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
+        return paramMap;
+
+를 가져온다
+
+
+handle 에서 v3는 모델뷰를 반환해서 큰 문제는 없지만 v4 부터는 String이므로 코드가 달라질 것이다.
+
+
+package hello.servlet.web.frontcontroller.v5; 에서 FrontControllerServletV5 클래스를 만들어준다.
+
+기존에는 v4는 v4만 v3 는 v3만 각자 맞는 값이 들어가게 하기위해
+    private Map<String, ControllerV4> controllerMap = new HashMap<>();
+이런식으로 되었다면 이제는 Object로 들어가 어디든 접근 가능하게 넓힐 것이다.
+
+
+.iter를 사용하여 for을 자동으로 생성되게 하자
