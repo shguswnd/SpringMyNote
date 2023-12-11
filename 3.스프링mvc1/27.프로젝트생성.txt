@@ -1,0 +1,11 @@
+war는 보통 톰캣이 별도이고 was같은 서블릿 컨테이너를 별도로 설치할때,
+빌드된 파일 넣을때 또는 jsp 쓸때...
+
+
+jar는 내장 톰캣으로 최적화되게 사용할때 사용.
+
+
+프로젝트를 다운받고 셋팅에.
+Annotation Processors 의 enable을 체크
+
+resources에 static 안에 index.html 만들면 index 기본 페이지가 만들어 진다.

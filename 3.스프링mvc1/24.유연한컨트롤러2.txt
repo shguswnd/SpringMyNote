@@ -1,0 +1,25 @@
+FrontControllerServletV5 클래스에  initHandlerMappintMap 함수에 v4를 추가적으로 넣어줄 것이다.
+
+initHandlerAdapters 메서드에 v4를 사용할수 있는 어댑터를 만들어줄것이다.
+
+
+package hello.servlet.web.frontcontroller.v5.adapter; 경로에 ControllerV4HandlerAdapter 를 만든다.
+
+
+이제  handle 메서드에서 
+viewName 를 return 하기 위해 모델 new를 해준다.
+
+
+
+
+        String viewName = controller.process(paramMap, model);
+
+        ModelView mv = new ModelView(viewName);
+        mv.setModel(model);
+        
+        return mv;
+
+
+
+OCP 를 보장해주도록 FrontcOntrollerServletV5 프론트 컨트롤러를 통해 어댑터만을 사용해서 
+v3,v4 등을 원하는걸로 접근하게 만들어준다.

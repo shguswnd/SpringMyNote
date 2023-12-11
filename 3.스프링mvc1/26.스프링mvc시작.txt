@@ -1,0 +1,18 @@
+package hello.servlet.web.springmvc.v1; 에  SpringMemberFormControllerV1, SpringMemberSaveControllerV1, SpringMemberListControllerV1 를 만든다.
+
+
+
+
+컨트롤러 통합.
+
+
+package hello.servlet.web.springmvc.v2; 경로에 public class SpringMemberControllerV2 {
+클래스를 만들자.
+
+
+package hello.servlet.web.springmvc.v3; 에 SpringMemberControllerV3 를 만든다.
+
+url 반환을 string으로 하며 이것 말고 다른 방법들이 많다.
+
+
+이제 RequestMapping에서 get, post 매핑으로 나눠보자

@@ -1,0 +1,16 @@
+컨트롤 + N dispatcherServlet를 봐보자
+
+
+과거 스프링 컨트롤러란?
+
+
+<SimpleControllerHandlerAdapter>
+package hello.servlet.web.springmvc.old; 에 OldController 를 만들자
+
+<HttpRequestHandlerAdapter>
+package hello.servlet.web.springmvc.old; 에 MyHttpRequestHandler 를 만들자
+
+
+뷰 리졸버의 기본 경로를 application.properties에 설정할 수 있다.
+spring.mvc.view.prefix=/WEB-INF/views/
+spring.mvc.view.suffix=.jsp
