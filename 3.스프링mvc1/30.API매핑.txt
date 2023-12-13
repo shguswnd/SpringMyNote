@@ -1,0 +1,4 @@
+package hello.springmvc.basic.requestmapping; 에 MappingClassController 를 만들어보자.
+
+
+package hello.springmvc.basic.request; 에 RequestHeaderController 클래스를 만들어보자
