@@ -1,0 +1,29 @@
+package hello.springmvc.basic.request; 에 RequestParamController 를 만들어준다.
+
+
+resources/static은 외부에 공개가된다.
+
+
+리턴값이 String이면서 controller가 있다면 view리졸버를 찾는다 이걸 막으려면 Controller 위에
+@Rest를 쓰거나 
+메서드에     @ResponseBody   를 걸어주면된다. 
+RestController랑 같은 역할.
+
+
+
+ @RequestParam("username") 여기서 안의 변수명을 생략 가능한데 그럴려면 이름이 똑같아야 한다.
+
+하지만 최종적으로 다없앨수 이싹.
+
+public String requestParamV4(String memberName, int memberAge)
+
+
+
+@RequestParam(required = true)
+기본값이 true인데 true이면 반드시 파라미터가 존재해야한다.
+false면 없어도 됨
+
+int 는 널이 들어오면 안되므로 Integer로 바꿔주자.
+
+
+defaultValue 가 들어가게되면 required = true/false 가 필요없다.

@@ -1,0 +1,4 @@
+package hello.springmvc.basic.request; 에  RequestBodyStringController 클래스를 만들자
+ 
+HttpEntity 스프링이 알아서 판단해서 너희 문자구나 하면 httpBody에 있는거를 알아서 문자로 
+넣어준다. httpMessageConvertor가 동작한다.
