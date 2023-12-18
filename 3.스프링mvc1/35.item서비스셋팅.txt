@@ -1,0 +1,5 @@
+셋팅의 
+
+Compiler -> Annotation Processors의 Enable 체크
+
+gradle의 build 를 IntelliJ 로
