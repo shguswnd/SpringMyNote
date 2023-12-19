@@ -1,0 +1,51 @@
+스프링에서 생성자가 하나 있으면
+
+    @Autowired
+    public BasicItemController(ItemRepository itemRepository){
+        this.itemRepository = itemRepository;
+    }
+
+주입시키는 Autowired 생략이 가능.
+
+또한 @RequiredArgsConstructor 를 만들어주면 final을 가진 생성자를 자동으로 만들어 준다
+
+즉 
+
+최종적으로 컨트롤러는 
+
+@Controller
+@RequestMapping("/basic/items")
+@RequiredArgsConstructor
+public class BasicItemController {
+
+    private final ItemRepository itemRepository;
+}
+이렇게 된다.
+
+
+이제 타임리프를 사용하기 위해 items를 templates에 옮기며 타임리프 방식을 적용할것이다.
+
+맨 상단에 <html xmlns:th="http://www.thymeleaf.org"> 를 추가해준다.
+
+
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+이거를 타임리프로 적용하여 절대경로로 엎어칠것이다.
+
+  <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+
+
+등록 버튼에 
+              th:onlick="|location.href='@{/basic/items/add}'|"
+클릭 이벤트를 걸어 해당의 경로를 보내도록 만든다.
+
+
+이제 tr 데이터를 타임리프로 만들것이며 
+
+      <tr th:each="item : ${items}"></tr>
+
+해당의 문법을 사용하면된다.
+
+
+나중에 콘솔로그 보고 싶을때 보자
+https://joo0jae.tistory.com/368
