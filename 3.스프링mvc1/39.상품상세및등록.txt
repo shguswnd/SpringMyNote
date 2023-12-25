@@ -1,0 +1,11 @@
+BasicItemController 
+이제
+item.html 파일을 타임스크립트 작업을 해보자
+
+
+addForm.html 파일을 타입 스크립트 작업을 하자
+
+form 에 th:action="basic/items/add" 를 넣지만
+만약 생략하면 현재 url을 부르므로 생략한다.
+
+th:action 이렇게만 쓸것
