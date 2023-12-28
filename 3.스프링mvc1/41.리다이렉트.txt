@@ -1,0 +1,14 @@
+return "redirect:/basic/item/{itemId}"; 여기서
+{itemId} 요 값이 리다이렉트에 넣어논 값으로 치환된다.
+redirectAttributes.addAttribute("itemId", saveItem.getId());
+
+남은 것들은 쿼리파라미터로 처리된다.
+redirectAttributes.addAttribute("status", true);
+?true~~
+
+
+리다이렉트로    @GetMapping("/{itemId}") 를 갈것이고 
+item.html을 작업하면 된다.
+
+
+타입리프는 파라미터값을 바로 꺼내 쓸 수 있게 해준다.
