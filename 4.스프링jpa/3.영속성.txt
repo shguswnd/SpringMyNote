@@ -1,0 +1,50 @@
+            em.persist(member);
+
+            Member findMember = em.find(Member.class, 100L);
+
+            System.out.println("findMember = " + findMember.getId());
+            System.out.println("findMember = " + findMember.getName());
+
+여기서 select 가 안나가고 바로 출력이 된다.
+
+            em.persist(member); 
+영속성의 예로 1차 캐싱된 데이터를 바로 출력하기 때문
+
+
+
+
+            Member findMember1 = em.find(Member.class, 100L);
+            Member findMember2 = em.find(Member.class, 100L);
+
+            System.out.println("result = " + (findMember1 == findMember2));
+
+
+이거의 경우 true 가 나온다
+왜냐면 1차 캐시때 동일한 데이터를 뽑기때문
+jpa 동일성 보장
+
+
+
+이제 Member에 생성자를 만들껀데
+
+jpa 는 내부적 리플레이션 때문에 기본 생성자도 있어야된다.
+
+
+jpa 는 
+
+           Member member1 = new Member(150L, "A");
+            Member member2 = new Member(160L, "B");
+
+            em.persist(member1);
+            em.persist(member2);
+commit 전 1차 캐시안에 insert 데이터 들이 존재하다가 commit되는 순간 쿼리를 
+보낸다.
+
+persistence.xml을 보면 
+<property name="hibernate.jdbc.batch_size" value="10"/>
+하이버네이트 배치가 존재하는데 commit 전 데이터들을 persist로 쌓다가
+commit 때 쿼리는 한번에 보내어 성능을 향상 시킬수 있다.
+
+버퍼링 : 모앗다가 한번에 배치 처리
+
+버퍼링 이점이 있다.

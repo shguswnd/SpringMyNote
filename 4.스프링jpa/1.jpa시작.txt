@@ -1,0 +1,57 @@
+h2 데이터베이스 설치
+
+download에서 window 를 받자
+
+https://www.h2database.com/html/main.html
+
+
+C:\Users\USER\Desktop\스프링입사가자\4.스프링JPA\h2 해당 경로로 h2 압축을 풀었다.
+
+
+cd C:\Users\USER\Desktop\스프링입사가자\4.스프링JPA\h2\bin
+
+경로에서 h2.bat을 그냥 실행하면 실행됨
+
+
+이게 화면이 자동으로 뜨는데
+
+저장 설정을 Generic H2(Server) 로 하여 실제 데이터 베이스처럼 별도로 띄움
+
+만약 창이 안뜬다면
+http://127.0.0.1:8082/
+
+이렇게 들어가면 됨
+
+
+이제 인텔리제이에서 
+new project를 하자 maven 으로 연습할것이다.
+
+https://hibernate.org/ 사이트의 현재 버전을 본다.
+
+
+이제 스프링을 사용하며 라이브러리를 고려할때,
+
+
+https://spring.io/ 
+에서 project -> springboot를 들어간다.
+그리고 learn에 들어가 내가 사용하려는 스프링부트 현재 버전을 보고
+Reference Doc. 을 클릭한 후
+맨 밑에 Dependency Version을 클릭하여 
+org.hibernate 의 호완되는 버전을 찾아보면 된다.
+
+여기에 맞는걸 pom.xml 에 잡아줘야한다.
+
+
+
+jpa 설정하기.
+
+무조건 위치가 
+/META-INF/persistence.xml 위치해야한다.
+
+
+데이터베이스 방언이라는 용어를 jpa에서는 사용하는데
+persistence에서 
+<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+Dialect를 오라클리면 오라클, Mysql이면 Mysql로 바꿔주기만하면 거의 모든 측면에서
+jpa 로 통일되서 사용이 가능하다.
+
