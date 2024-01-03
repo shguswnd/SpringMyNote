@@ -1,0 +1,32 @@
+            Member member = new Member(200L, "member200");
+            em.persist(member);
+
+            em.flush();
+
+
+commit 전 내가 먼저 쿼리 반영 시키거나 보고 싶을때
+flush를 호출한다.
+
+플러쉬를 진행해도 1차 캐시는 보존된다.
+
+
+JPQL 쿼리 실행시 플러쉬가 자동으로 호출되는 이유는
+이전 persist가 이후 DB에 진행되지 않으면
+JPQL을 사용한 select 쿼리가 persist 적용되지 않은상태로 조회된다.
+
+플러쉬는 자동으로 커밋이나 쿼리 실행떄 플러시하고 커밋하고 플러쉬하고 
+쿼리 실행이 기본값이다(FlushModeType.AUTO)
+
+
+FlushModeType.COMMIT
+커밋할때만 플러쉬
+
+예를 들어
+persist로 테이블 a,b,c 를 저장하는데
+
+JPQL에서는 D라는 테이블을 셀렉트함 전혀 다른 테이블을 건든다면 굳이 FlushModeType.AUTO
+를 사용하지 않고 FlushModeType.COMMIT 를 쓰는데 굳이??
+이렇게 사용하는 경우는 없다.
+
+영속성 컨텍스트의 변경내용을 데이터베이스에 동기화
+

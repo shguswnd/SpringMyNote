@@ -1,0 +1,48 @@
+필요할떄 테이블을 자동으로 다 만들어준다.
+
+데이터베이스 방언에 맞는 적절한 DDL을 생성해 준다.
+
+이렇게 생성된 DDL 은 반드시 개발에서만 사용하자!
+
+
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+
+persistence.xml 에 자동문 create 옵션이다.
+
+이 옵션이 있을때 서버를 실행시키면 
+
+Hibernate: 
+    drop table if exists Member cascade
+
+Hibernate: 
+    create table Member (
+        id bigint not null,
+        name varchar(255),
+        primary key (id)
+    )
+
+로그가 발생한다.
+
+
+이렇든 자동으로 서버 올라갈때 생성이 된다.
+
+
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
+옵션에서 create-drop 로 한다면 내가 서버 키고 종료했을때
+최종적으로 테이블을 drop 한다.
+
+
+옵션에 update 를 넣을경우, 처음 생성하고 Member.java에서 변경되는 부분만 컬럼 update를 해준다.
+하지만 지우는건 안된다.
+
+
+
+옵션에 vaildate 를 넣어주면 테이블과 멤버객체가 매핑이 정상적으로 진행되었는지 확인해준다.
+
+옵션에 none을 쓰는건 주석이랑 똑같은 그닥 사용안함
+
+
+
+    @Column(unique = true, length = 10)
+ddl 생성에만 유니크와 길이를 영향을 준다.
