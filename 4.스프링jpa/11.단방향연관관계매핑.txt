@@ -1,0 +1,58 @@
+ex1-hello의 멤버를 들어가보자
+
+멤버 클래스의
+    @Column(name = "TEAM_ID")
+    private Long teamId;
+는 팀을 만들기 위해 만듬.
+
+
+
+이제 팀 클래스를 만든자.
+
+
+멤버에 컬럼을 박아 버린다면,
+
+            Member findMember = em.find(Member.class, member.getId());
+
+            Long findTeamId = findMember.getTeamId();
+            Team findTeam = em.find(Team.class, findTeamId);
+
+이렇게 왜래키가 연관된 데이터를 활용할때마다,
+jpa를 계속 호출하는 방법밖에 없다.
+
+조인이 훨씬 낫다는 얘기 이걸 이제
+개선을 해야함.
+
+
+단방향...
+
+이제 멤버에
+    @Column(name = "TEAM_ID")
+//    private Long teamId;
+이거를 주석하고 팀 객체를 부르자
+
+이제 멤버와 팀간의 매핑관계를 하며
+N:1
+멤버 : 팀 이므로
+    @ManyToOne 
+이렇게 어노테이션을 준다.
+그리고 조인되는 컬럼을 알아야되니 
+@JoinColumn(name = "TEAM_ID")
+해주면 된다.
+
+이전 team.getId() 팀의 아이디를 뽑아 처리하는게 아닌
+member.setTeam(team); 넣어 jpa가 알아서 팀의 아이디를 추출하여 넣도록 한다.
+
+조회하는것도
+            Long findTeamId = findMember.getTeamId();
+            Team findTeam = em.find(Team.class, findTeamId);
+여기서 
+            Team findTeam = findMember.getTeam();
+이거 하나로 끝난다
+
+
+현재 소스에서 영속성때문에 1차 캐시 데이터만 나오는데
+만약 쿼리를 보고싶다면
+            em.flush();
+            em.clear();
+이거를 넣어 쿼리가 날라가는걸 보도록 하자

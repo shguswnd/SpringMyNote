@@ -1,0 +1,43 @@
+jpashop 프로젝트를 만들며,
+
+item, member, order, orderitem 클래스를 만들어주자.
+
+@GeneratedValue 기본값() 이런거 안붙히면 은 auto이다
+
+enum으로 OrderStatus 를 만들자
+
+enum의 타입은 EnumType.STRING
+으로 하자
+
+
+@Table(name = "ORDERS") 로 만들었는데
+디비마다 다른데 어떤 디비는 예약어로 ORDER 를 쓰는경우가 있다.
+
+persistence.xml에서 DB 접속 정보를 jpashop 으로 바꾼다.
+
+h2에서 jpashop를 만들것인다
+
+**
+저장한 설정 : 
+Generic H2(Embedded) ->  JDBC URL(jdbc:h2:~/jpashop) 연결 시험 클릭 후 
+Generic H2(Server) 로 다시 접속
+
+
+
+ @Column(length = 10) 
+이러한 컬럼 제약 조건도 넣는게 좋다 이게 몇자리가 들어갈지를 더욱 직관으로 보기 때문에
+
+
+@Index 도 전부 넣는게 좋다
+
+
+order 클래스의
+     @Column(name= "MEMBER_ID")
+    private Long memberId;
+이거를 보면 객체 설계를 테이블 설계에 맞춘 방식이다.
+
+테이블의 외래키를 객체에 그대로 가져옴.
+
+객체 그래프 탐색이 불가능해짐.
+
+이제 연관관계 매퍼를 만들어보자.
