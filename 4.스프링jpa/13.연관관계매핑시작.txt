@@ -1,0 +1,79 @@
+먼저 단방향 매핑을 하자
+
+연관관계의 주인을 선정하는게 가장 중요하며
+FK를 가진게 연관관계의 주인이다.
+
+이걸 가지고 단방향 매핑을 진행하면 된다.
+
+이제 order 클래스로가 
+    @Column(name= "MEMBER_ID")
+    private Long memberId;
+를 사용하지 않고 변환하여 본다.
+
+    @ManyToOne
+    private Member member;
+
+테이블 연관관계처럼 주문은 한사용자가 여러개를 할 수 있으니
+@ManyToOne을 해주면되며, Member는 import 따로 안해준다.
+
+가급적이면 이렇게 단방향으로 만들고 꼭 필요시 양방향을 적용하자.
+
+
+orderItem 클래스에서 orderid 와 itemId를 바꿔주자
+
+아이템은 양방향을 할 필요가 없다
+
+아이템으로 주문내역을 보고 할 일이 거의 없음 
+
+아이템을 보고 주문서를 찾는게 아닌 보통 주문서를 보고 아이템을 찾으니
+그렇게 필요한 내용이 아니다.
+
+
+멤버에 orders를 넣는건 좋은 설계가 아니다.
+
+내가 특정멤버의 주문내역을 보고싶다?
+
+그러면 주문에서 fk로 있는 멤버의 내용을 보고 조회를 한다.
+
+보통 멤버부터 찾아서 하는 경우는 없다
+
+
+하지만 여기선 예제로 member에 order 리스트를 넣겠따.
+
+관례상 초기값 new ArrayList<>(); 를 해준다.
+
+데이터없이 nullpoint 예외처리도 방지해준다.
+
+
+**
+Order에서 orderItem 리스트는 연관관계 양방향에 비지니스적으로 충분히 의미가 있다.
+
+주문서를 뽑았는데 주문서와 연관된 아이템 목록을 찾거나 그럴떄가 있다
+
+
+여기서 중요한것으로 JpaMain에서 
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
+와 
+addOrderItem 메소드에서      
+  orderItems.add(orderItem);
+  orderItem.setOrder(this);
+이 표현식은 
+
+            Order order = new Order();
+            em.persist(order);
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+            
+            em.persist(orderItem);
+
+이거와 같다.
+
+
+이거와 같이 양방향은 필수는 아니다 그런데
+
+만약 오더클래스하나로 내가 주문된 아이템들을 바로 보고 싶다 그럴때 양방향으로 되어있다면
+바로 출력이 가능한 옵션일 뿐
+
+또는 JPQL 조회시 양방향 쓰는 경우가 있다.
